@@ -94,7 +94,19 @@ def update_restaurant():
         print x.name
 
 
+def delete_restaurant():
+    query = session.query(Restaurant).filter_by(name='viva').all()
+    for x in query:
+        print 'co najdu mazu = ', x.name
+        session.delete(x)
+
+    query = session.query(Restaurant).all()
+    for x in query:
+        print 'co jsem nasel po mazani = ', x.name
+
 insert_data()
 # fetch_data_restaurace()
 # fetch_data_menu_items()
-update_restaurant()
+
+# update_restaurant()
+delete_restaurant()
