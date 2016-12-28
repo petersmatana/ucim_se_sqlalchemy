@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+# http://alextechrants.blogspot.cz/2013/11/10-common-stumbling-blocks-for.html
+
 import os
 from sqlalchemy import Column, ForeignKey, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
