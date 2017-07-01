@@ -53,11 +53,27 @@ session = scoped_session(session_factory)
 
 def insert_data():
     p1 = Parent(name='p1')
-    p2 = Parent(name='p2')
-    p3 = Parent(name='p3')
-
     ch1 = Child(name='ch1')
+
+    p1.child.append(ch1)
+
+    session.add(p1)
+    session.add(ch1)
+
+    session.commit()
+
+
+def insert_data2():
+    p2 = Parent(name='p2')
     ch2 = Child(name='ch2')
-    ch3 = Child(name='ch3')
+
+    ch2.parent.append(p2)
+
+    session.add(p2)
+    session.add(ch2)
+
+    session.commit()
+
 
 insert_data()
+insert_data2()
