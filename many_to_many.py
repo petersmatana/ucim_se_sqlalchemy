@@ -75,5 +75,11 @@ def insert_data2():
     session.commit()
 
 
+def get_data():
+    data = session.query(Parent).filter_by(name='p1').all()
+    for x in data:
+        print x.name
+
 insert_data()
 insert_data2()
+get_data()

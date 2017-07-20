@@ -1,0 +1,5 @@
+Generic single-database configuration.
+
+jak pouzivat:
+
+alembic revision -m 'prvni revize'

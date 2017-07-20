@@ -3,6 +3,8 @@
 # http://alextechrants.blogspot.cz/2013/11/10-common-stumbling-blocks-for.html
 
 import os
+import psycopg2
+
 from sqlalchemy import Column, ForeignKey, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
@@ -16,16 +18,26 @@ def delete_database():
         os.remove('/home/smonty/Documents/ucim_se_sqlalchemy/databaze.db')
     except Exception as ex:
         print 'neco se podelalo, chyba = ', ex
-delete_database()
+# delete_database()
+
+
+'''
+def db_connection():
+    return psycopg2.connect(
+        user
+    )
+'''
 
 Base = declarative_base()
-engine = create_engine('sqlite:///databaze.db')
+# engine = create_engine('sqlite:///databaze.db')
+engine = create_engine('postgresql+psycopg2://postgres:root@localhost/smonty')
 
 
 class Restaurant(Base):
     __tablename__ = 'restaurants'
     id = Column(Integer, primary_key=True)
     name = Column(String(80), nullable=True)
+    dalsi_sloupec = Column(String(80), nullable=True)
 
 
 class MenuItem(Base):
@@ -106,7 +118,7 @@ def delete_restaurant():
     for x in query:
         print 'co jsem nasel po mazani = ', x.name
 
-insert_data()
+# insert_data()
 # fetch_data_restaurace()
 # fetch_data_menu_items()
 
