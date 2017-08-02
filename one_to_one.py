@@ -16,7 +16,7 @@ def delete_database():
         os.remove('/home/smonty/Documents/ucim_se_sqlalchemy/databaze.db')
     except Exception as ex:
         print 'neco se podelalo, chyba = ', ex
-# delete_database()
+
 
 Base = declarative_base()
 engine = create_engine('sqlite:///databaze.db')
@@ -49,12 +49,14 @@ def insert_data():
 
     jt = JednaTabulka(label='houby', child=dt)
     jt2 = JednaTabulka(label='houby 2', child=dt2)
+    jt3 = JednaTabulka(label='houby 3', child=dt2)
 
     session.add(dt)
     session.add(dt2)
 
     session.add(jt)
     session.add(jt2)
+    session.add(jt3)
 
     session.commit()
 
@@ -66,5 +68,6 @@ def get_data():
     print data.child.label
 
 
-# insert_data()
+delete_database()
+insert_data()
 get_data()

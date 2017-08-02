@@ -42,14 +42,31 @@ class Engineer(Employee):
     }
 
 
+# neco z tohoto: http://docs.sqlalchemy.org/en/latest/orm/mapper_config.html
+# fuuuuu!!.... :(
+
+# http://docs.sqlalchemy.org/en/latest/orm/inheritance.html
+
 class Manager(Employee):
     __tablename__ = 'manager'
     id = Column(Integer, ForeignKey('employee.id'), primary_key=True)
     manager_name = Column(String(30))
 
+    # newtable_id = relationship("NewTable", back_populates="parent")
+
     __mapper_args__ = {
         'polymorphic_identity': 'manager',
     }
+
+
+'''
+class NewTable(Base):
+    __tablename__ = 'new_table'
+    label = Column(String(50))
+
+    parent_id = Column(Integer, ForeignKey('manager.id'))
+    parent = relationship("Manager", back_populates="child")
+'''
 
 
 Base.metadata.create_all(engine)
@@ -67,7 +84,7 @@ def insert_data():
 
     session.commit()
 
-# insert_data()
+insert_data()
 
 
 def select_data():
