@@ -64,5 +64,18 @@ except Exception as ex:
     session.rollback()
     print('roll back')
 finally:
+    print('finally blok')
+
+    '''
+    http://docs.sqlalchemy.org/en/latest/orm/session_api.html#sqlalchemy.orm.session.Session.close
+    
+    uplne presne nevim co dela close() ale dalsi sessio add a commit dela to
+    co bych cekal...
+    '''
     session.close()
 
+
+r2 = Restaurant(name='eee')
+
+session.add(r2)
+session.commit()
