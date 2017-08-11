@@ -17,7 +17,7 @@ def delete_database():
     try:
         os.remove('/home/smonty/Documents/ucim_se_sqlalchemy/databaze.db')
     except Exception as ex:
-        print 'neco se podelalo, chyba = ', ex
+        print('neco se podelalo, chyba = ', ex)
 # delete_database()
 
 
@@ -79,20 +79,20 @@ def insert_data():
 
 def fetch_data_restaurace():
     for x in session.query(Restaurant).all():
-        print 'id = {0}, name = {1}'.format(x.id, x.name)
+        print('id = {0}, name = {1}'.format(x.id, x.name))
 
 
 def fetch_data_menu_items():
     for x in session.query(MenuItem).all():
-        print 'id = {0}, name = {1}'.format(x.id, x.item_name)
+        print('id = {0}, name = {1}'.format(x.id, x.item_name))
         if x.restaurant:
-            print 'restaurace, name = {0}'.format(x.restaurant.name)
+            print('restaurace, name = {0}'.format(x.restaurant.name))
 
 
 def update_restaurant():
     r2 = session.query(Restaurant).all()
     for x in r2:
-        print x.name
+        print(x.name)
 
     r1 = session.query(Restaurant).filter_by(name='viva').one()
     r1.name = 'Viva'
@@ -105,18 +105,18 @@ def update_restaurant():
 
     r2 = session.query(Restaurant).all()
     for x in r2:
-        print x.name
+        print(x.name)
 
 
 def delete_restaurant():
     query = session.query(Restaurant).filter_by(name='viva').all()
     for x in query:
-        print 'co najdu mazu = ', x.name
+        print('co najdu mazu = ', x.name)
         session.delete(x)
 
     query = session.query(Restaurant).all()
     for x in query:
-        print 'co jsem nasel po mazani = ', x.name
+        print('co jsem nasel po mazani = ', x.name)
 
 # insert_data()
 # fetch_data_restaurace()
